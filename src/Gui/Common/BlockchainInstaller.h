@@ -32,11 +32,11 @@ private:
   const QDir m_applicationDir;
 
   bool checkIfCurrentBlockchainExists() const;
-  bool checkIf4xbitcoinBlockchainExists() const;
+  bool checkIfalloyBlockchainExists() const;
   bool getGenesisBlockFromBlockchain(char** _genesisBlockData) const;
   bool checkIfBlockchainOutdated(quint64& _current, quint64& _4xbitcoin) const;
   QFileInfo currentBlockchainInfo() const;
-  QFileInfo 4xbitcoinBlockchainInfo() const;
+  QFileInfo alloyBlockchainInfo() const;
 
   void copyProgress(quint64 _copied, quint64 _total);
   void installBlockchain();

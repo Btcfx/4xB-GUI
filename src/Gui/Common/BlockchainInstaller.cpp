@@ -60,20 +60,20 @@ void BlockchainInstaller::exec() {
     return;
   }
 
-  if (!checkIf4xbitcoinBlockchainExists()) {
+  if (!checkIfalloyBlockchainExists()) {
     installBlockchain();
     return;
   }
 
   quint64 currentHeight;
-  quint64 4xbitcoinHeight;
-  if (!checkIfBlockchainOutdated(currentHeight, 4xbitcoinHeight)) {
+  quint64 alloyHeight;
+  if (!checkIfBlockchainOutdated(currentHeight, alloyHeight)) {
     return;
   }
 
   QString questionStringTemplate = tr("Would you like to replace your current blockchain (height: %1)\nwith the one in your GUI wallet folder (height: %2)?");
 
-  QuestionDialog dlg(tr("Blockchain installation"), QString(questionStringTemplate).arg(4xbitcoinHeight).arg(currentHeight), nullptr);
+  QuestionDialog dlg(tr("Blockchain installation"), QString(questionStringTemplate).arg(alloyHeight).arg(currentHeight), nullptr);
   if (dlg.exec() == QDialog::Accepted) {
     installBlockchain();
   }
@@ -127,7 +127,7 @@ bool BlockchainInstaller::getGenesisBlockFromBlockchain(char** _genesisBlockData
   return true;
 }
 
-bool BlockchainInstaller::checkIf4xbitcoinBlockchainExists() const {
+bool BlockchainInstaller::checkIfalloyBlockchainExists() const {
   return m_4xbitcoinDir.exists() && m_4xbitcoinDir.exists(m_blocksFileName);
 }
 
@@ -155,7 +155,7 @@ QFileInfo BlockchainInstaller::currentBlockchainInfo() const {
   return QFileInfo(m_applicationDir.absoluteFilePath(m_blocksFileName));
 }
 
-QFileInfo BlockchainInstaller::4xbitcoinBlockchainInfo() const {
+QFileInfo BlockchainInstaller::alloyBlockchainInfo() const {
   return QFileInfo(m_4xbitcoinDir.absoluteFilePath(m_blocksFileName));
 }
 
